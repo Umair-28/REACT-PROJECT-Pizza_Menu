@@ -1,9 +1,12 @@
+import "../../index.css";
+
 const Footer = (props) => {
     return (
-        <div>
-            <p>{props.time}</p>
+        <footer className="footer">
+        {props.isOpen && <p>We are Open Until {props.closeHours}:00</p>}
+        
            
-        </div>
+        </footer>
     );
     }
 

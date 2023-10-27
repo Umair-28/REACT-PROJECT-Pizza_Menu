@@ -1,9 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import './index.css';
 
-import Pizza from './components/Pizza/pizza';
-import Header from './components/Header/header';
-import Footer from './components/Footer/footer';
+import Pizza from "./components/Pizza/pizza";
+import Header from "./components/Header/header";
+import Footer from "./components/Footer/footer";
 const pizzaData = [
   {
     name: "Focaccia",
@@ -49,28 +49,26 @@ const pizzaData = [
   },
 ];
 
-
 function App() {
- let time ="";
- const hours = new Date().getHours();
- const openHours = 12;
- const closeHours = 22;
- if(hours >= openHours && hours <= closeHours )
-  {
-    time = "We are closed";
-    alert("We are closed");
-  }else{
-    time="We are open";
-    alert("We are open");
-  }
 
 
- return (
-  <div>
-    <Header />
-    {pizzaData.map((pizza, index) => (
+  let time = "";
+  const hours = new Date().getHours();
+  const openHours = 12;
+  const closeHours = 22;
+  const isOpen = hours >= openHours && hours <= closeHours;
+  console.log(isOpen);
+  
+
+  return (
+    <div >
+      <Header  />
+      <h1 className="menu">OUR MENU</h1>
+      <main>
+        
+      {pizzaData.map((pizza, index) => (
         <Pizza
-          key={index} // Add a unique key if you're mapping over an array
+          key={pizza.name} // Add a unique key if you're mapping over an array
           name={pizza.name}
           ingredients={pizza.ingredients}
           price={pizza.price}
@@ -78,9 +76,15 @@ function App() {
           soldOut={pizza.soldOut}
         />
       ))}
-    <Footer time={time} />  
-  </div>
- );
+      </main>
+
+      <button className="btn">Order New</button>
+      
+      <Footer
+      isOpen={isOpen}
+      closeHours={closeHours}/>
+    </div>
+  );
 }
 
 export default App;
