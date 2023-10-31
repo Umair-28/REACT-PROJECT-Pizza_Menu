@@ -58,25 +58,28 @@ function App() {
   const closeHours = 22;
   const isOpen = hours >= openHours && hours <= closeHours;
   console.log(isOpen);
+  const numPizza = pizzaData.length;
+  console.log(numPizza);
   
 
   return (
     <div >
       <Header  />
       <h1 className="menu">OUR MENU</h1>
-      <main>
-        
-      {pizzaData.map((pizza, index) => (
-        <Pizza
-          key={pizza.name} // Add a unique key if you're mapping over an array
-          name={pizza.name}
-          ingredients={pizza.ingredients}
-          price={pizza.price}
-          photoName={pizza.photoName}
-          soldOut={pizza.soldOut}
-        />
-      ))}
-      </main>
+      {numPizza > 0 ? (<main>
+
+{pizzaData.map((pizza, index) => (
+ <Pizza
+   key={pizza.name} // Add a unique key if you're mapping over an array
+   name={pizza.name}
+   ingredients={pizza.ingredients}
+   price={pizza.price}
+   photoName={pizza.photoName}
+   soldOut={pizza.soldOut}
+ />
+))}  
+ 
+</main>) : <p>No pizzas</p>  }
 
       <button className="btn">Order New</button>
       
